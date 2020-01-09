@@ -1,0 +1,324 @@
+﻿﻿@model LuckyDrawApplication.Models.User
+
+@{
+    ViewBag.Title = "Purchaser Registration";
+}
+
+<style>
+    html {
+        height: 100% !important;
+    }
+
+    body {
+        background-image: url("../../admin-lte/img/plain-background.png");
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        height: 100% !important;
+    }
+
+    #rebatesheader {
+        font-family: 'Roboto';
+        font-weight: 900;
+        font-size: 40px;
+        background: -webkit-radial-gradient(#ffd875, #d99834);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+
+    .results-form {
+        background: rgba(76, 175, 80, 0);
+        font-family: 'Roboto';
+        color: white;
+        width: 50%;
+        height: 40%;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+    button.button {
+        border-radius: 1rem;
+        padding: 1rem;
+        font-family: 'Roboto';
+        font-size: medium;
+        font-weight: bolder;
+        padding: 1rem 5rem;
+        color: #c90000;
+        box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
+        border: solid 3px transparent;
+        background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #d49e4a, #d99834);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        box-shadow: 2px 1000px 1px #E0B066 inset;
+    }
+
+        button.button:hover {
+            box-shadow: none;
+            color: #c90000;
+        }
+
+    #special {
+        top: 0;
+        margin-top: 10px;
+        position: absolute;
+        right: 0;
+        margin-right: 20px;
+    }
+
+    #pig {
+        border-radius: 1rem;
+        font-family: 'Roboto';
+        font-size: small;
+        padding: .1rem 2rem;
+        color: #c90000;
+        box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
+        border: solid 3px transparent;
+        background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #d49e4a, #d99834);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        box-shadow: 2px 1000px 1px #E0B066 inset;
+    }
+
+    .module-border-wrap {
+        background: linear-gradient(to right, #d49e4a, #ffd875);
+        padding: 8px;
+        margin-left: 100px;
+        margin-right: 100px;
+        margin-top: 30px;
+    }
+
+    .module {
+        background: #C11427;
+        color: white;
+        font-family: 'Roboto';
+        font-weight: 900;
+        font-size: 100px;
+    }
+
+    #press {
+        color: white;
+        font-size: 20px;
+        margin-top: 35px;
+        margin-bottom: 5px;
+    }
+
+    #details {
+        color: white;
+        font-size: 30px;
+        margin-top: 30px;
+    }
+
+    #details2 {
+        color: white;
+        font-size: 20px;
+        margin-top: 15px;
+    }
+
+    .blob-btn {
+        z-index: 1;
+        position: relative;
+        padding: 40px 66px;
+        margin-bottom: 20px;
+        text-align: center;
+        text-transform: uppercase;
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        transition: color 0.5s;
+        cursor: pointer;
+    }
+
+    .blob-btn:before {
+        content: "";
+        z-index: 1;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border: 6px solid #de9f00;
+    }
+
+    .blob-btn:after {
+        content: "";
+        z-index: -2;
+        position: absolute;
+        left: 9px;
+        top: 9px;
+        width: 100%;
+        height: 100%;
+        transition: all 0.3s 0.2s;
+    }
+
+    .blob-btn:hover {
+        color: #dfe2e6;
+    }
+
+    .blob-btn:hover:after {
+        transition: all 0.3s;
+        left: 0;
+        top: 0;
+    }
+
+    .blob-btn__inner {
+        z-index: -1;
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .blob-btn__blobs {
+        position: relative;
+        display: block;
+        height: 100%;
+        -webkit-filter: url("#goo");
+        filter: url("#goo");
+    }
+
+    .blob-btn__blob {
+        position: absolute;
+        top: 6px;
+        width: 25%;
+        height: 100%;
+        background: #ffc800;
+        border-radius: 100%;
+        -webkit-transform: translate3d(0, 150%, 0) scale(1.7);
+        transform: translate3d(0, 150%, 0) scale(1.7);
+        transition: -webkit-transform 0.45s;
+        transition: transform 0.45s;
+        transition: transform 0.45s, -webkit-transform 0.45s;
+    }
+
+    .blob-btn__blob:nth-child(1) {
+        left: 0%;
+        transition-delay: 0s;
+    }
+
+    .blob-btn__blob:nth-child(2) {
+        left: 30%;
+        transition-delay: 0.08s;
+    }
+
+    .blob-btn__blob:nth-child(3) {
+        left: 60%;
+        transition-delay: 0.16s;
+    }
+
+    .blob-btn__blob:nth-child(4) {
+        left: 90%;
+        transition-delay: 0.24s;
+    }
+
+    .blob-btn:hover .blob-btn__blob {
+        -webkit-transform: translateZ(0) scale(1.7);
+        transform: translateZ(0) scale(1.7);
+    }
+
+    .Center-Container {
+        position: relative;
+        height: 80%;
+    }
+
+    .Absolute-Center {
+        width: 50%;
+        height: 50%;
+        overflow: auto;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        border: solid black;
+    }
+</style>
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://adminlte.io/themes/AdminLTE/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+
+<div class="Center-Container">
+
+    <div class="row" id="special">
+        <div class="row">
+            <a id="pig" href="@Url.Action("Logout", "Login")"><span class="glyphicon glyphicon-log-out"></span>Log out</a>
+        </div>
+    </div>
+
+    <div class="container results-form">
+
+        <h1 id="rebatesheader">REWARDS AND REBATES UP TO</h1>
+
+        <div class="row text-center">
+            <p id="press"><b>PRESS BUTTON TO DRAW</b></p>
+            <div class="buttons">
+                <button class="blob-btn" id="staffluckydrawnow">
+                    WHO IS THE LUCKY WINNER?
+                    <span class="blob-btn__inner">
+                        <span class="blob-btn__blobs">
+                            <span class="blob-btn__blob"></span>
+                            <span class="blob-btn__blob"></span>
+                            <span class="blob-btn__blob"></span>
+                            <span class="blob-btn__blob"></span>
+                        </span>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <div class="row text-center">
+            <a style="color:#f2b350; text-align:center" href="@Url.Action("Index", "Admin")">Back to Admin Index</a>
+        </div>
+
+    </div>
+
+</div>
+<script src="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="~/admin-lte/js/adminlte.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#staffluckydrawnow').click(function () {
+
+            $.ajax({
+                url: '@Url.Action("PostStaffLuckyDraw", "Admin")',
+                type: "POST",
+                data: null,
+                success: function (data) {
+
+                    if (data.success) {
+
+                        alert("You will be redirected shortly!");
+
+                        var linkHref = data.urllink;
+                        window.open(linkHref);
+
+                    }
+                    else {
+                        alert(data.message);
+                    }
+                },
+                error: function (data) {
+                    alert(data.message);
+                }
+            });
+
+        });
+
+    });
+</script>

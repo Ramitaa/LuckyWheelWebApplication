@@ -1,0 +1,402 @@
+﻿﻿@model LuckyDrawApplication.Models.User
+
+@{
+    ViewBag.Title = "Purchaser Registration";
+}
+
+    <style>
+
+        html {
+            height: 100% !important;
+        }
+
+        body {
+            background-image: url("../../admin-lte/img/plain-background.png");
+            background-position: top center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            height: 100% !important;
+        }
+
+        .registration-form {
+            font-family: 'Roboto';
+            color: white;
+            width: 30%;
+            height: 20%;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+            .registration-form .form-control {
+                border-color: white;
+                background: rgba(76, 175, 80, 0);
+                border-radius: 0em;
+                border-width: thin;
+                color: white;
+            }
+
+            .registration-form h3 {
+                margin-bottom: 5%;
+                margin-top: -5%;
+                text-align: center;
+            }
+
+            .registration-form .btnregistration {
+                width: 50%;
+                border: none;
+                border-radius: 1rem;
+                padding: 1.5%;
+                background: rgba(76, 175, 80, 0);
+                font-weight: 600;
+                color: #fff;
+                cursor: pointer;
+            }
+
+        .btnregistrationSubmit {
+            width: 50%;
+            border-radius: 1rem;
+            padding: 1.5%;
+            color: #fff;
+            background-color: #D3112B;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-control::-webkit-input-placeholder {
+            color: white !important;
+        }
+        /* WebKit, Blink, Edge */
+        .form-control:-moz-placeholder {
+            color: white !important;
+        }
+        /* Mozilla Firefox 4 to 18 */
+        .form-control::-moz-placeholder {
+            color: white !important;
+        }
+        /* Mozilla Firefox 19+ */
+        .form-control:-ms-input-placeholder {
+            color: white !important;
+        }
+        /* Internet Explorer 10-11 */
+
+        button.button {
+            border-radius: 1rem;
+            padding: 1rem;
+            font-family: 'Roboto';
+            font-size: medium;
+            font-weight: bolder;
+            padding: .5rem 10rem;
+            color: #c90000;
+            box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
+            border: solid 3px transparent;
+            background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #d49e4a, #d99834);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            box-shadow: 2px 1000px 1px #E0B066 inset;
+        }
+
+            button.button:hover {
+                box-shadow: none;
+                color: #c90000;
+            }
+
+        .has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline, .has-error.radio label, .has-error.checkbox label, .has-error.radio-inline label, .has-error.checkbox-inline label {
+            color: white !important;
+            text-align: end !important;
+            border-color: #E0B066 !important;
+            border-width: medium;
+        }
+
+        .has-error .form-control {
+            border-color: #E0B066 !important;
+            border-width: medium;
+        }
+
+            .has-error .form-control:focus {
+                border-color: #E0B066 !important;
+                border-width: medium;
+            }
+
+        select option {
+            background: rgba(211, 17, 43, 1);
+            color: #fff;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        #special {
+            top: 0;
+            margin-top: 2px;
+            position: absolute;
+            right: 0;
+            margin-right: 20px;
+        }
+
+        #pig {
+            border-radius: 1rem;
+            font-family: 'Roboto';
+            font-size: small;
+            padding: .1rem 2rem;
+            color: #c90000;
+            box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
+            border: solid 3px transparent;
+            background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #d49e4a, #d99834);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            box-shadow: 2px 1000px 1px #E0B066 inset;
+        }
+
+        .Center-Container {
+            position: relative;
+            height: 80%;
+        }
+
+        .Absolute-Center {
+            width: 50%;
+            height: 50%;
+            overflow: auto;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            border: solid black;
+        }
+    </style>
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://adminlte.io/themes/AdminLTE/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+
+<div class="Center-Container">
+
+    <div class="row" id="special">
+        <div class="row">
+            <a id="pig" href="@Url.Action("Logout", "Login")"><span class="glyphicon glyphicon-log-out"></span>Log out</a>
+        </div>
+    </div>
+
+    <div class="container registration-form" style="width: 80%">
+
+        <form id="register_user" method="post" class="form-horizontal" action="">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control " id="name" name="name" placeholder="Name" autocomplete="off" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control " id="ic_number" name="ic_number" placeholder="IC No" autocomplete="off" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="email" class="form-control " id="emailaddress" name="emailaddress" placeholder="Email" autocomplete="off" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control " id="contactnumber" name="contactnumber" placeholder="Tel" autocomplete="off" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.DropDownList("project", (IEnumerable<SelectListItem>)ViewBag.ProjectList, new { @class = "form-control", @style = "color: white" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control " id="block" name="block" placeholder="Block" autocomplete="off" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.DropDownList("level", new SelectList(ViewBag.FloorUnitList, "Text", "Value"), new { @class = "form-control", @style = "color: white" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.DropDownList("unit", new SelectList(ViewBag.FloorUnitList, "Text", "Value"), new { @class = "form-control", @style = "color: white" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control " id="salesconsultant" name="salesconsultant" placeholder="Sales Consultant Name" autocomplete="off" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" style="margin-top:20px;">
+                    <p style="color:white; font-size:medium;">@ViewBag.Date &emsp; @ViewBag.Time</p>
+                    <p style="color:white; font-size:medium;">@ViewBag.SalesLocation</p>
+                </div>
+            </div>
+            <div class="row text-center">
+                <button class="button" id="submit_form" type="submit">SUBMIT</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+<script src="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="~/admin-lte/js/adminlte.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#register').addClass("active");
+
+        level.SelectedValue = "1";
+        unit.SelectedValue = "1";
+
+        $("#register_user").validate({
+            rules: {
+                name: {
+                    required: true,
+                    validAlpha: true,
+                    minlength: 3,
+                    max50: true
+                },
+                ic_number: {
+                    required: true,
+                    validNo: true,
+                    validIC: true
+                },
+                emailaddress: {
+                    required: true,
+                    minlength: 3,
+                    max50: true
+                },
+                contactnumber: {
+                    required: true,
+                    validNo: true,
+                    minlength: 9,
+                    max15: true
+                },
+                block:
+                {
+                    required: true,
+                    max50: true
+                },
+                salesconsultant: {
+                    required: true,
+                    validAlpha: true,
+                    minlength: 3,
+                    max50: true
+                }
+            },
+            submitHandler: function (form) {
+                var prizeWon = 0;
+                var json = {
+                    'Name': form.name.value,
+                    'ICNumber': form.ic_number.value,
+                    'EmailAddress': form.emailaddress.value,
+                    'ContactNumber': form.contactnumber.value,
+                    'EventID': '',
+                    'ProjectID': form.project.value,
+                    'Unit': form.block.value + "-" + form.level.value + "-" + form.unit.value,
+                    'SalesConsultant': form.salesconsultant.value,
+                    'SalesLocation': '@ViewBag.SalesLocation',
+                    'PrizeWon': prizeWon
+                };
+                $.ajax({
+                    url: '@Url.Action("CreateUserAndDraw", "Home")',
+                    method: 'POST',
+                    data: JSON.stringify(json),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    processData: false,
+                    success: function (data) {
+
+                        if (data.success) {
+
+                            alert("You will be redirected shortly!");
+                            $('#register_user')[0].reset();
+
+                            var linkHref = data.urllink;
+                            window.open(linkHref);
+                        }
+
+                        else {
+                            alert(data.message);
+                        }
+
+                    },
+                    error: function (data) {
+                        alert(data.message);
+                    }
+                });
+            },
+            errorElement: "em",
+            errorPlacement: function (error, element) {
+                // Add the `help-block` class to the error element
+                error.addClass("help-block");
+                error.insertAfter(element);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).parents(".col-md-12").addClass("has-error");
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).parents(".col-md-12").removeClass("has-error");
+            },
+        });
+
+        jQuery.validator.addMethod("validIC", function (value, element) {
+        return value.length == 12;
+        }, "Exactly 12 characters allowed");
+
+        jQuery.validator.addMethod("max50", function (value, element) {
+            return value.length < 50;
+        }, "Less than 50 characters allowed");
+
+        jQuery.validator.addMethod("max15", function (value, element) {
+            return value.length < 15;
+        }, "Less than 15 characters allowed");
+
+        jQuery.validator.addMethod("validNo", function (value, element) {
+        return !(isNaN(value));
+        }, "Only numerical characters allowed");
+
+        jQuery.validator.addMethod("validAlpha", function (value, element) {
+            return (isNaN(value));
+        }, "Only alphabetical characters allowed");
+
+    });
+
+</script>

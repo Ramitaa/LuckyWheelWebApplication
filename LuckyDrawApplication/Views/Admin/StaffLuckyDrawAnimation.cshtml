@@ -1,0 +1,204 @@
+﻿﻿@model LuckyDrawApplication.Models.User
+
+@{
+    ViewBag.Title = "Staff Lucky Draw Animation";
+}
+
+<style>
+    html {
+        height: 100% !important;
+    }
+
+    body {
+        background-image: url("../../admin-lte/img/plain-background.png");
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        height: 100% !important;
+    }
+
+    #rebatesheader {
+        font-family: 'Roboto';
+        font-weight: 900;
+        font-size: 40px;
+        background: -webkit-radial-gradient(#ffd875, #d99834);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .results-form {
+        background: rgba(76, 175, 80, 0);
+        font-family: 'Roboto';
+        color: white;
+        width: 50%;
+        height: 40%;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+    button.button {
+        border-radius: 1rem;
+        padding: 1rem;
+        font-family: 'Roboto';
+        font-size: medium;
+        font-weight: bolder;
+        padding: 1rem 5rem;
+        color: #c90000;
+        box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
+        border: solid 3px transparent;
+        background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #d49e4a, #d99834);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        box-shadow: 2px 1000px 1px #E0B066 inset;
+    }
+
+    button.button:hover {
+        box-shadow: none;
+        color: #c90000;
+    }
+
+    #special {
+        top: 0;
+        margin-top: 5px;
+        position: absolute;
+        right: 0;
+        margin-right: 20px;
+    }
+
+    #pig {
+        border-radius: 1rem;
+        font-family: 'Roboto';
+        font-size: small;
+        padding: .1rem 2rem;
+        color: #c90000;
+        box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
+        border: solid 3px transparent;
+        background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #d49e4a, #d99834);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        box-shadow: 2px 1000px 1px #E0B066 inset;
+    }
+
+    .module-border-wrap {
+        background: linear-gradient(to right, #d49e4a, #ffd875);
+        padding: 5px;
+        margin-left: 100px;
+        margin-right: 100px;
+        margin-top: 20px;
+    }
+
+    .module {
+        background: #C11427;
+        color: white;
+        font-family: 'Roboto';
+        font-weight: 900;
+        font-size: 80px;
+    }
+
+    #press {
+        color: white;
+        font-size: 15px;
+        margin-top: 35px;
+        margin-bottom: 5px;
+    }
+
+    #details {
+        color: white;
+        font-size: 20px;
+        margin-top: 10px;
+    }
+
+    #details2 {
+        color: white;
+        font-size: 15px;
+        margin-top: 5px;
+    }
+
+    .Center-Container {
+        position: relative;
+        height: 80%;
+    }
+
+    .Absolute-Center {
+        width: 50%;
+        height: 50%;
+        overflow: auto;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        border: solid black;
+    }
+</style>
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://adminlte.io/themes/AdminLTE/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+
+<div class="Center-Container">
+
+    <div class="row" id="special">
+        <div class="row">
+            <a id="pig" href="@Url.Action("Logout", "Login")"><span class="glyphicon glyphicon-log-out"></span>Log out</a>
+        </div>
+    </div>
+
+    <div class="container results-form">
+
+        <h1 id="rebatesheader">REWARDS AND REBATES UP TO</h1>
+
+        <div class="module-border-wrap text-center">
+            <div class="module" id="number">
+                <b>RM00, 000, 000</b>
+            </div>
+        </div>
+
+        <div class="row text-center">
+            <p id="press"><b>PRESS BUTTON TO DRAW</b></p>
+            <button class="button" id="submit_form">HUAT AH!</button>
+            <p style="" id="details"><b>@ViewBag.WinnerName</b></p>
+            <p id="details2"><b>DATE OF DRAW</b></p>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="~/admin-lte/js/adminlte.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+    var now = new Date();
+    var today = now.getDate()  + ' / ' + (now.getMonth() + 1) + ' / ' + now.getFullYear();
+    $('#details2').text(today);
+
+
+    $('#submit_form').click(function() {
+        $('#number').animate({
+            Counter: @ViewBag.WinnerPrize
+        }, {
+            duration: 1000,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text("RM" + Math.ceil(now) + ".00");
+            }
+        });
+    });
+});
+
+</script>
